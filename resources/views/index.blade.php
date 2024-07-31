@@ -1,5 +1,5 @@
 <!-- resources/views/index.blade.php -->
-@extends('components.layouts.app')
+@extends('welcome')
 
 @section('title', 'Dashboard')
 

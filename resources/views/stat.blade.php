@@ -1,5 +1,5 @@
 <!-- resources/views/bc.blade.php -->
-@extends('components.layouts.app')
+@extends('welcome')
 
 @section('title', 'Statistik')
 
@@ -73,8 +73,15 @@
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Isi Pesan</label>
                         <div class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 bg-white">
-                            <img src="{{ asset('images/about.jpg') }}" alt="Pratinjau Gambar">
-                            <p>LOREM IPSUM</p>
+                            <img src="{{ asset('images/bigsale.png') }}" alt="Pratinjau Gambar">
+                            <p>Hallo Jennie
+                                Bagaimana kabar Anda? 
+                                Ada promo menarik spesial hanya untuk Anda!
+                                
+                                Anda dapat menikmati spesial discount 20% untuk periode transaksi bulan ini.
+                                
+                                Jangan lewatkan kesempatan ini atau promo akan hangus. Click button di bawah ini untuk informasi lebih lanjut 
+                            </p>
                             <button class="mt-2 bg-blue-500 text-white py-1 px-2 rounded">CEK SEKARANG</button>
                         </div>
                     </div>
