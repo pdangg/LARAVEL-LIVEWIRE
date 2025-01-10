@@ -5,9 +5,38 @@
     showButton: @entangle('showButton').defer,
     buttonText: @entangle('buttonText').defer,
     buttonUrl: @entangle('buttonUrl').defer,
-    imageUrl: '{{ asset('assets/default.jpg') }}',
+    template: '{{ request('template') }}', // Menyimpan template yang dipilih dari URL
+    imageUrl: '{{ asset('images/default.jpg') }}',
+    isTemplateLocked: {{ request('template') ? 'true' : 'false' }}, // Menyimpan status kunci template
     updatePreview() {
-        this.imageUrl = document.getElementById('image').files.length ? URL.createObjectURL(document.getElementById('image').files[0]) : '{{ asset('assets/default.jpg') }}';
+        let inputFile = document.getElementById('image');
+        this.imageUrl = inputFile.files.length ? URL.createObjectURL(inputFile.files[0]) : '{{ asset('images/default.jpg') }}';
+        this.message = this.tempMessage;
+
+        // Ensure showButton is updated correctly
+        this.showButton = this.convertToBoolean(this.showButton);
+    },
+    async updateMessageBasedOnTemplate() {
+        if (this.template) {
+            fetch(`/api/templates/${this.template}`)
+                .then(response => response.json())
+                .then(data => {
+                    this.tempMessage = data.message || '';
+                    this.showButton = true;
+                    this.buttonText = data.buttonText || '';
+                    this.updatePreview();
+                })
+                .catch(error => {
+                    console.error('Error fetching template:', error);
+                    this.tempMessage = '';
+                    this.showButton = false;
+                    this.buttonText = '';
+                });
+        } else {
+            this.tempMessage = '';
+            this.showButton = false;
+            this.buttonText = '';
+        }
         this.message = this.tempMessage;
     },
     getPreviewMessage() {
@@ -37,9 +66,9 @@
         textarea.focus();
     },
     convertToBoolean(value) {
-        return value === 'true';
+        return value === 'true' || value === true;
     }
-}" @insert-tag.window="insertTag($event.detail.tag)">
+}" @insert-tag.window="insertTag($event.detail.tag)" x-init="updateMessageBasedOnTemplate()">
 
     <head>
         <meta charset="UTF-8">
@@ -181,46 +210,65 @@
                         <!-- Form Section -->
                         <div class="bg-gray-100 p-6 rounded-lg shadow-md">
                             <h3 class="text-lg font-semibold mb-4">Formulir Broadcast</h3>
-                            <form>
+
+                            @if ($errors->any())
+                                <div id="error-notification" class="bg-red-500 text-white p-4 rounded-lg mb-4">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
+                            <!-- Notifikasi Sukses -->
+                            @if (session('success'))
+                                <div id="successNotification" class="bg-green-500 text-white p-4 rounded-lg mb-4">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+
+                            <!-- Form Broadcast -->
+                            <form action="{{ route('broadcast.store') }}" method="POST"
+                                enctype="multipart/form-data">
+                                @csrf
                                 <div>
                                     <label class="block text-gray-700 font-bold mb-2">Nama Broadcast</label>
-                                    <input type="text"
+                                    <input type="text" name="nama_broadcast" value="{{ old('nama_broadcast') }}"
                                         class="border border-gray-300 shadow-md rounded py-2 px-3 mb-4 w-full text-gray-700 leading-tight focus:shadow-outline"
                                         placeholder="Masukkan Nama Broadcast">
                                 </div>
+
+                                <!-- Hidden Input untuk Mengirim id_template -->
+                                <input type="hidden" name="id_template" value="{{ $selectedTemplate }}">
+
                                 <div>
                                     <label class="block text-gray-700 font-bold mb-2">Template</label>
-                                    <select class="border border-gray-300 shadow-md rounded py-2 px-3 mb-4 w-full text-gray-700 leading-tight focus:shadow-outline">
-                                        <option>Template A</option>
-                                        <option>Template B</option>
-                                        <option>Template C</option>
+                                    <select name="id_template"
+                                        class="border border-gray-300 shadow-md rounded py-2 px-3 mb-4 w-full text-gray-700 leading-tight focus:shadow-outline"
+                                        x-model="template" @change="updateMessageBasedOnTemplate"
+                                        :disabled="isTemplateLocked">
+                                        <option value="" disabled selected>---Pilih Template---</option>
+                                        @foreach ($templates as $template)
+                                            <option value="{{ $template->id }}"
+                                                {{ $selectedTemplate == $template->id ? 'selected' : '' }}>
+                                                {{ $template->name }}</option>
+                                        @endforeach
                                     </select>
-                                </div>
-                                <div>
-                                    <label class="block text-gray-700 font-bold mb-2">Kontak</label>
-                                    <select class="border border-gray-300 shadow-md rounded py-2 px-3 mb-4 w-full text-gray-700 leading-tight focus:shadow-outline">
-                                        <option>Bapak A</option>
-                                        <option>Bapak B</option>
-                                        <option>Bapak C</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label class="block text-gray-700 font-bold mb-2">Jadwal</label>
-                                    <input type="datetime-local"
-                                    class="border border-gray-300 shadow-md rounded py-2 px-3 mb-4 w-full text-gray-700 leading-tight focus:shadow-outline">
                                 </div>
 
+                                
+
                                 <div class="mb-4">
-                                    <label for="image"
-                                        class="block text-gray-700 font-bold mb-2">Gambar:</label>
-                                    <input type="file" id="image" wire:model="image"
+                                    <label for="image" class="block text-gray-700 font-bold mb-2">Gambar:</label>
+                                    <input type="file" id="image" name="image" wire:model="image"
                                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                                     <div x-show="error" class="text-red-500 mt-2" x-text="error"></div>
                                     @if ($customError)
-                                        <span class="text-red-500">{{ $customError }}</span>
+                                        <span id="custom-error" class="text-red-500">{{ $customError }}</span>
                                     @else
                                         @error('image')
-                                            <span class="text-red-500">{{ $message }}</span>
+                                            <span id="validation-error" class="text-red-500">{{ $message }}</span>
                                         @enderror
                                     @endif
                                 </div>
@@ -232,7 +280,7 @@
                                         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-2">Jennie</button>
                                     <button type="button" @click="insertTag(['<b>', '</b>'])"
                                         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-2">Bold</button>
-                                    <textarea id="message" x-ref="messageTextarea" x-model="tempMessage" rows="6"
+                                    <textarea id="message" name="message" x-ref="messageTextarea" x-model="tempMessage" rows="6" value="{{ old('message') }}"
                                         class="shadow appearance-none border rounded w-full py-2 px-3 mt-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
                                 </div>
 
@@ -253,19 +301,25 @@
                                     </div>
                                 </div>
 
-
                                 <div class="mb-4" x-show="convertToBoolean(showButton)">
                                     <label for="buttonUrl" class="block text-gray-700 font-bold mb-2">Alamat
                                         URL:</label>
-                                    <input type="text" id="buttonUrl" x-model="buttonUrl"
+                                    <input type="text" id="buttonUrl" name="button_url" x-model="buttonUrl"
                                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                                 </div>
 
                                 <div class="mb-4" x-show="convertToBoolean(showButton)">
                                     <label for="buttonText" class="block text-gray-700 font-bold mb-2">Isi
                                         Tombol:</label>
-                                    <input type="text" id="buttonText" x-model="buttonText"
+                                    <input type="text" id="buttonText" name="button_text" x-model="buttonText"
                                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                </div>
+
+                                <div class="max-w-lg mx-auto rounded-lg p-4">
+                                    <button type="submit"
+                                        class="bg-green-500 hover:bg-green-700 text-white mt-8 font-bold text-lg py-3 px-6 rounded-xl block w-full">
+                                        Kirim Broadcast
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -276,8 +330,7 @@
                             <h3 class="text-lg font-semibold mb-4">Pratinjau Broadcast</h3>
                             <div class="w-50 p-4">
                                 <div class="max-w-lg mx-auto bg-white shadow-lg rounded-lg overflow-hidden mb-4">
-                                    <div class="bg-cover h-96" :style="`background-image: url(${imageUrl})`">
-                                    </div>
+                                    <div class="bg-cover h-96" :style="`background-image: url(${imageUrl})`"></div>
                                     <div class="p-4">
                                         <h1 class="text-gray-900 font-bold text-2xl break-words whitespace-normal"
                                             x-html="getPreviewMessage()"></h1>
@@ -286,22 +339,25 @@
                                 </div>
                                 <div x-show="showButton" class="max-w-lg mx-auto bg-white shadow-lg rounded-lg p-4">
                                     <a :href="buttonUrl" target="_blank"
-                                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full text-center block"
+                                        class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded w-full text-center block"
                                         x-text="buttonText || 'CEK SEKARANG'"></a>
                                 </div>
                             </div>
-                            
+
                             <!-- Buttons -->
-                            <div class="flex justify-center space-x-4 mt-4">
+                            <div class="flex justify-center space-x-4 mt-2">
                                 <button @click="updatePreview()"
-                                    class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Preview
-                                </button>
-                                <a href="{{ route('bclist') }}">
+                                    class="bg-gray-500 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded">Preview</button>
+                                <a href="{{ route('bc') }}">
                                     <button
-                                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Simpan
+                                        class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Simpan
                                         Draft</button>
                                 </a>
                             </div>
+
+
+
+
                         </div>
                     </div>
                 </div>
@@ -311,6 +367,46 @@
 </div>
 
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var customError = document.getElementById('custom-error');
+        var validationError = document.getElementById('validation-error');
+
+        // Jika salah satu atau kedua elemen ada, sembunyikan setelah 5 detik
+        if (customError || validationError) {
+            setTimeout(function() {
+                if (customError) customError.style.display = 'none';
+                if (validationError) validationError.style.display = 'none';
+            }, 5000); // 5000ms = 5 detik
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var successNotification = document.getElementById('successNotification');
+        if (successNotification) {
+            setTimeout(function() {
+                successNotification.style.display = 'none';
+            }, 5000); // Notifikasi hilang setelah 5 detik
+        }
+    });
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+        if (window.location.search) {
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mengecek apakah notifikasi error ada
+        var errorNotification = document.getElementById('error-notification');
+        if (errorNotification) {
+            // Sembunyikan setelah 10 detik
+            setTimeout(function() {
+                errorNotification.style.display = 'none';
+            }, 10000); // 10000ms = 10 detik
+        }
+    });
+
     // JavaScript to add 'active' class to the current link
     document.addEventListener('DOMContentLoaded', function() {
         const links = document.querySelectorAll('aside a');

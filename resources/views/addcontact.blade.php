@@ -11,7 +11,7 @@
 
 <body class="antialiased">
     <div class="min-h-screen bg-gray-100">
-        @livewire('broadcast-preview')
+        @livewire('contact-csv')
     </div>
     @livewireScripts
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.0.0/dist/alpine.min.js" defer></script>

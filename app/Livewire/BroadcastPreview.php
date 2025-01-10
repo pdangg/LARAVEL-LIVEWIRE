@@ -2,11 +2,14 @@
 
 namespace App\Livewire;
 
-use Livewire\Component;
 use Livewire\WithFileUploads;
+use App\Models\Template;
+use Livewire\Component;
+use Illuminate\Support\Facades\Request;
 
 class BroadcastPreview extends Component
 {
+
     use WithFileUploads;
 
     public $image;
@@ -15,19 +18,38 @@ class BroadcastPreview extends Component
     public $buttonText = '';
     public $buttonUrl = '';
     public $customError = '';
+    public $templates; // Tambahkan ini
+    public $selectedTemplate = ''; // Tambahkan ini
+    public $isTemplateLocked = false; // Tambahkan ini
 
     protected $rules = [
-        'image' => 'nullable|image|mimes:jpg,jpeg,png,heic|max:1024', // Validasi file yang diizinkan dan ukuran maksimal 1MB
+        'image' => 'nullable|image|mimes:jpg,jpeg,png,heic|max:1024',
         'message' => 'string|max:1000',
         'showButton' => 'required|boolean',
         'buttonText' => 'string|max:255',
-        'buttonUrl' => 'string|max:255|url', // Validasi bahwa URL harus valid
+        'buttonUrl' => 'string|max:255|url',
     ];
+
+    public function mount()
+    {
+        $this->templates = Template::all();
+        $selectedTemplateId = Request::query('template');
+        if ($selectedTemplateId) {
+            $template = Template::find($selectedTemplateId);
+            if ($template) {
+                $this->selectedTemplate = $selectedTemplateId;
+                $this->message = $template->message;
+                $this->showButton = true;
+                $this->buttonText = $template->buttonText;
+                $this->isTemplateLocked = true; // Kunci pemilihan template
+            }
+        }
+    }
 
     public function updated($propertyName)
     {
-        $this->resetErrorBag($propertyName); // Reset error bag untuk properti yang diperbarui
-        $this->customError = ''; // Reset pesan kesalahan kustom
+        $this->resetErrorBag($propertyName);
+        $this->customError = '';
 
         try {
             $this->validateOnly($propertyName);
@@ -38,13 +60,24 @@ class BroadcastPreview extends Component
         }
     }
 
-    public function addName()
+    public function updatedSelectedTemplate($value)
     {
-        $this->message .= ' {{ nama }}';
-        // Tambahkan log untuk debugging
-        logger('Message updated:', ['message' => $this->message]);
-    }
+        if ($this->isTemplateLocked) {
+            return;
+        }
 
+        $template = Template::find($value);
+        if ($template) {
+            $this->message = $template->message;
+            $this->showButton = true;
+            $this->buttonText = $template->buttonText;
+        } else {
+            $this->message = '';
+            $this->showButton = false;
+            $this->buttonText = '';
+        }
+    }
+    
     public function render()
     {
         return view('livewire.broadcast-preview');

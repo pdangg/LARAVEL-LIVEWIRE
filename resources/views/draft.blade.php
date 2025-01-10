@@ -24,6 +24,7 @@
                 </div>
             </div>
         </header>
+        
         <div class="w-full mx-auto bg-white p-5 rounded-lg shadow-lg mt-6">
             <div class="flex justify-between items-center mb-5">
                 <h2 class="text-2xl font-bold">Draft</h2>

@@ -13,8 +13,11 @@
                     <span class="bg-green-200 text-green-800 py-1 px-3 rounded-full">1000 credit</span>
                 </div>
                 <div class="relative">
-                    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0018 14.158V11a6.002 6.002 0 00-5-5.917V5a2 2 0 10-4 0v.083A6.002 6.002 0 004 11v3.159c0 .538-.214 1.055-.595 1.436L2 17h5m8 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0018 14.158V11a6.002 6.002 0 00-5-5.917V5a2 2 0 10-4 0v.083A6.002 6.002 0 004 11v3.159c0 .538-.214 1.055-.595 1.436L2 17h5m8 0v1a3 3 0 11-6 0v-1m6 0H9">
+                        </path>
                     </svg>
                     <span class="absolute top-0 right-0 bg-red-600 text-white rounded-full px-1 text-xs">2</span>
                 </div>
@@ -27,15 +30,16 @@
         <div class="w-full mx-auto bg-white p-5 rounded-lg shadow-lg mt-6">
             <div class="flex justify-between items-center mb-5">
                 <h2 class="text-2xl font-bold">List Contact</h2>
-                <button class="bg-black text-white px-4 py-2 rounded-lg" onclick="toggleTamkon()">Tambah list
-                    kontak</button>
+                <a href="{{ route('addcontact') }}">
+                    <button class="bg-black text-white px-4 py-2 rounded-lg">Tambah list kontak</button>
+                </a>
             </div>
             <table class="w-full border-collapse">
                 <thead>
                     <tr>
                         <th class="border-b-2 p-2">No</th>
                         <th class="border-b-2 p-2">Nama Kontak</th>
-                        <th class="border-b-2 p-2">No Telefon</th>
+                        <th class="border-b-2 p-2">No Telepon</th>
                         <th class="border-b-2 p-2">Group Kontak</th>
                         <th class="border-b-2 p-2">Aksi</th>
                     </tr>
@@ -45,10 +49,10 @@
                     <tr class="bg-gray-100">
                         <td class="border-b p-2 text-center">1</td>
                         <td class="border-b p-2 text-center">Bp. Agus</td>
-                        <td class="border-b p-2 text-center">0989102983918239</td>
-                        <td class="border-b p-2 text-center">grup mancing</td>
+                        <td class="border-b p-2 text-center">089102983918239</td>
+                        <td class="border-b p-2 text-center">Grup Mancing</td>
                         <td class="border-b p-2 text-center">
-                            <button class="text-green-600 hover:text-green-800" onclick="ToggleEdit()">
+                            <button class="text-green-600 hover:text-green-800" onclick="ToggleEditContact()">
                                 <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -69,12 +73,12 @@
                         </td>
                     </tr>
                     <tr class="bg-gray-100">
-                        <td class="border-b p-2 text-center">1</td>
-                        <td class="border-b p-2 text-center">Bp. Agus</td>
-                        <td class="border-b p-2 text-center">0989102983918239</td>
-                        <td class="border-b p-2 text-center">grup mancing</td>
+                        <td class="border-b p-2 text-center">2</td>
+                        <td class="border-b p-2 text-center">Bp. Santoso</td>
+                        <td class="border-b p-2 text-center">08910298391</td>
+                        <td class="border-b p-2 text-center">Grup Renang</td>
                         <td class="border-b p-2 text-center">
-                            <button class="text-green-600 hover:text-green-800" onclick="ToggleEdit()">
+                            <button class="text-green-600 hover:text-green-800" onclick="ToggleEditContact()">
                                 <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -95,12 +99,12 @@
                         </td>
                     </tr>
                     <tr class="bg-gray-100">
-                        <td class="border-b p-2 text-center">1</td>
-                        <td class="border-b p-2 text-center">Bp. Agus</td>
-                        <td class="border-b p-2 text-center">0989102983918239</td>
-                        <td class="border-b p-2 text-center">grup mancing</td>
+                        <td class="border-b p-2 text-center">3</td>
+                        <td class="border-b p-2 text-center">Bp. Budi</td>
+                        <td class="border-b p-2 text-center">086272722223</td>
+                        <td class="border-b p-2 text-center">Grup Bola</td>
                         <td class="border-b p-2 text-center">
-                            <button class="text-green-600 hover:text-green-800" onclick="ToggleEdit()">
+                            <button class="text-green-600 hover:text-green-800" onclick="ToggleEditContact()">
                                 <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -121,12 +125,12 @@
                         </td>
                     </tr>
                     <tr class="bg-gray-100">
-                        <td class="border-b p-2 text-center">1</td>
-                        <td class="border-b p-2 text-center">Bp. Agus</td>
-                        <td class="border-b p-2 text-center">0989102983918239</td>
-                        <td class="border-b p-2 text-center">grup mancing</td>
+                        <td class="border-b p-2 text-center">4</td>
+                        <td class="border-b p-2 text-center">Bp. Joko</td>
+                        <td class="border-b p-2 text-center">084536383332323</td>
+                        <td class="border-b p-2 text-center">Grup Basket</td>
                         <td class="border-b p-2 text-center">
-                            <button class="text-green-600 hover:text-green-800" onclick="ToggleEdit()">
+                            <button class="text-green-600 hover:text-green-800" onclick="ToggleEditContact()">
                                 <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -173,8 +177,7 @@
                                 class="px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:text-gray-700">5</a>
                         </li>
                         <li>
-                            <span
-                                class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300">...</span>
+                            <span class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300">...</span>
                         </li>
                         <li>
                             <a href="#"
@@ -197,7 +200,7 @@
                 <thead>
                     <tr>
                         <th class="border-b-2 p-2">No</th>
-                        <th class="border-b-2 p-2">Nama Kontak</th>
+                        <th class="border-b-2 p-2">Nama Grup</th>
                         <th class="border-b-2 p-2">Dibuat</th>
                         <th class="border-b-2 p-2">Jumlah Kontak</th>
                         <th class="border-b-2 p-2">Aksi</th>
@@ -207,8 +210,8 @@
                 <tbody>
                     <tr class="bg-gray-100">
                         <td class="border-b p-2 text-center">1</td>
-                        <td class="border-b p-2 text-center">Kontak Grup Kelas wir</td>
-                        <td class="border-b p-2 text-center">26 mei 2024</td>
+                        <td class="border-b p-2 text-center">Grup Kelas</td>
+                        <td class="border-b p-2 text-center">26 Mei 2024</td>
                         <td class="border-b p-2 text-center">50</td>
                         <td class="border-b p-2 text-center">
                             <button class="text-green-600 hover:text-green-800" onclick="toggleEditGroup()">
@@ -232,10 +235,10 @@
                         </td>
                     </tr>
                     <tr class="bg-gray-100">
-                        <td class="border-b p-2 text-center">1</td>
-                        <td class="border-b p-2 text-center">Kontak Grup Kelas wir</td>
-                        <td class="border-b p-2 text-center">26 mei 2024</td>
-                        <td class="border-b p-2 text-center">50</td>
+                        <td class="border-b p-2 text-center">2</td>
+                        <td class="border-b p-2 text-center">Grup Reuni</td>
+                        <td class="border-b p-2 text-center">26 Maret 2024</td>
+                        <td class="border-b p-2 text-center">500</td>
                         <td class="border-b p-2 text-center">
                             <button class="text-green-600 hover:text-green-800" onclick="toggleEditGroup()">
                                 <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24"
@@ -259,10 +262,10 @@
                         </td>
                     </tr>
                     <tr class="bg-gray-100">
-                        <td class="border-b p-2 text-center">1</td>
-                        <td class="border-b p-2 text-center">Kontak Grup Kelas wir</td>
-                        <td class="border-b p-2 text-center">26 mei 2024</td>
-                        <td class="border-b p-2 text-center">50</td>
+                        <td class="border-b p-2 text-center">3</td>
+                        <td class="border-b p-2 text-center">Grup Lucu</td>
+                        <td class="border-b p-2 text-center">26 Desember 2024</td>
+                        <td class="border-b p-2 text-center">55</td>
                         <td class="border-b p-2 text-center">
                             <button class="text-green-600 hover:text-green-800" onclick="toggleEditGroup()">
                                 <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24"
@@ -285,10 +288,10 @@
                         </td>
                     </tr>
                     <tr class="bg-gray-100">
-                        <td class="border-b p-2 text-center">1</td>
-                        <td class="border-b p-2 text-center">Kontak Grup Kelas wir</td>
-                        <td class="border-b p-2 text-center">26 mei 2024</td>
-                        <td class="border-b p-2 text-center">50</td>
+                        <td class="border-b p-2 text-center">4</td>
+                        <td class="border-b p-2 text-center">Grup Kaku</td>
+                        <td class="border-b p-2 text-center">26 Agustus 2024</td>
+                        <td class="border-b p-2 text-center">10</td>
                         <td class="border-b p-2 text-center">
                             <button class="text-green-600 hover:text-green-800" onclick="toggleEditGroup()">
                                 <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24"
@@ -337,8 +340,7 @@
                                 class="px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:text-gray-700">5</a>
                         </li>
                         <li>
-                            <span
-                                class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300">...</span>
+                            <span class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300">...</span>
                         </li>
                         <li>
                             <a href="#"
@@ -350,41 +352,6 @@
 
         </div>
 
-        <!-- TamKon -->
-
-        <div id="TamKon" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
-            <div class="bg-white p-6 rounded-lg shadow-lg w-1/2">
-                <h3 class="text-lg font-semibold mb-4 text-center">Tambah Kontak Baru</h3>
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">Nama</label>
-                        <input type="text" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
-                            placeholder="Nama Kontak">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">No Handphone</label>
-                        <input type="text" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
-                            placeholder="Nomer Handphone">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">Email</label>
-                        <input type="text" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
-                            placeholder="Email">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">Nama</label>
-                        <input type="text" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
-                            placeholder="Nama Kontak">
-                    </div>
-                </div>
-
-                <div class="mt-6 flex justify-between">
-                    <button class="bg-green-600 text-white py-2 px-4 rounded">SIMPAN</button>
-                    <button class="bg-green-600 text-white py-2 px-4 rounded" onclick="toggleTamkon()">Batal</button>
-                </div>
-            </div>
-        </div>
-
         <!-- TamGrup -->
 
         <div id="TamGroup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
@@ -393,7 +360,7 @@
                 <div class="justify-center grid-cols-2 gap-4">
                     <div class="flex justify-center">
                         <div class="w-full max-w-sm">
-                            <label class="block text-sm font-medium text-gray-700 text-center">Nama Kontak</label>
+                            <label class="block text-sm font-medium text-gray-700 text-center">Nama Grup</label>
                             <input type="text"
                                 class="mt-1 block w-full border-gray-300 rounded-md shadow-sm text-center"
                                 placeholder="Nama Kontak">
@@ -410,66 +377,70 @@
                         <tr>
                             <th class="border-b-2 p-2">No</th>
                             <th class="border-b-2 p-2">Nama Kontak</th>
-                            <th class="border-b-2 p-2">Dibuat</th>
-                            <th class="border-b-2 p-2">Jumlah Kontak</th>
-                            <th class="border-b-2 p-2">Aksi</th>
+                            <th class="border-b-2 p-2">No Telepon</th>
+                            <th class="border-b-2 p-2">Grup Kontak</th>
+                            <th class="border-b-2 p-2">Pilih</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         <tr class="bg-gray-100">
                             <td class="border-b p-2 text-center">1</td>
-                            <td class="border-b p-2 text-center">Kontak Grup Kelas wir</td>
-                            <td class="border-b p-2 text-center">26 mei 2024</td>
-                            <td class="border-b p-2 text-center">50</td>
+                            <td class="border-b p-2 text-center">Bp. Agus</td>
+                            <td class="border-b p-2 text-center">089102983918239</td>
+                            <td class="border-b p-2 text-center">Grup Mancing</td>
                             <td class="border-b p-2 text-center">
-                                <button class="text-blue-500 hover:text-blue-700 mx-2">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="text-red-500 hover:text-red-700 mx-2">
-                                    <i class="fas fa-trash"></i>
+                                <button class="text-black">
+                                    <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M5.25 7.5A2.25 2.25 0 0 1 7.5 5.25h9a2.25 2.25 0 0 1 2.25 2.25v9a2.25 2.25 0 0 1-2.25 2.25h-9a2.25 2.25 0 0 1-2.25-2.25v-9Z" />
+                                    </svg>
                                 </button>
                             </td>
                         </tr>
                         <tr class="bg-gray-100">
                             <td class="border-b p-2 text-center">2</td>
-                            <td class="border-b p-2 text-center">Kontak Grup Kelas wir</td>
-                            <td class="border-b p-2 text-center">26 mei 2024</td>
-                            <td class="border-b p-2 text-center">50</td>
+                            <td class="border-b p-2 text-center">Bp. Santoso</td>
+                            <td class="border-b p-2 text-center">08910298391</td>
+                            <td class="border-b p-2 text-center">Grup Renang</td>
                             <td class="border-b p-2 text-center">
-                                <button class="text-blue-500 hover:text-blue-700 mx-2">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="text-red-500 hover:text-red-700 mx-2">
-                                    <i class="fas fa-trash"></i>
+                                <button class="text-black">
+                                    <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M5.25 7.5A2.25 2.25 0 0 1 7.5 5.25h9a2.25 2.25 0 0 1 2.25 2.25v9a2.25 2.25 0 0 1-2.25 2.25h-9a2.25 2.25 0 0 1-2.25-2.25v-9Z" />
+                                    </svg>
                                 </button>
                             </td>
                         </tr>
                         <tr class="bg-gray-100">
                             <td class="border-b p-2 text-center">3</td>
-                            <td class="border-b p-2 text-center">Kontak Grup Kelas wir</td>
-                            <td class="border-b p-2 text-center">26 mei 2024</td>
-                            <td class="border-b p-2 text-center">50</td>
+                            <td class="border-b p-2 text-center">Bp. Budi</td>
+                            <td class="border-b p-2 text-center">086272722223</td>
+                            <td class="border-b p-2 text-center">Grup Bola</td>
                             <td class="border-b p-2 text-center">
-                                <button class="text-blue-500 hover:text-blue-700 mx-2">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="text-red-500 hover:text-red-700 mx-2">
-                                    <i class="fas fa-trash"></i>
+                                <button class="text-black">
+                                    <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M5.25 7.5A2.25 2.25 0 0 1 7.5 5.25h9a2.25 2.25 0 0 1 2.25 2.25v9a2.25 2.25 0 0 1-2.25 2.25h-9a2.25 2.25 0 0 1-2.25-2.25v-9Z" />
+                                    </svg>
                                 </button>
                             </td>
                         </tr>
                         <tr class="bg-gray-100">
                             <td class="border-b p-2 text-center">4</td>
-                            <td class="border-b p-2 text-center">Kontak Grup Kelas wir</td>
-                            <td class="border-b p-2 text-center">26 mei 2024</td>
-                            <td class="border-b p-2 text-center">50</td>
+                            <td class="border-b p-2 text-center">Bp. Joko</td>
+                            <td class="border-b p-2 text-center">084536383332323</td>
+                            <td class="border-b p-2 text-center">Grup Basket</td>
                             <td class="border-b p-2 text-center">
-                                <button class="text-blue-500 hover:text-blue-700 mx-2">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="text-red-500 hover:text-red-700 mx-2">
-                                    <i class="fas fa-trash"></i>
+                                <button class="text-black">
+                                    <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M5.25 7.5A2.25 2.25 0 0 1 7.5 5.25h9a2.25 2.25 0 0 1 2.25 2.25v9a2.25 2.25 0 0 1-2.25 2.25h-9a2.25 2.25 0 0 1-2.25-2.25v-9Z" />
+                                    </svg>
                                 </button>
                             </td>
                         </tr>
@@ -477,14 +448,14 @@
                 </table>
 
                 <div class="mt-6 flex justify-between">
-                    <button class="bg-green-600 text-white py-2 px-4 rounded">SIMPAN</button>
+                    <button class="bg-green-600 text-white py-2 px-4 rounded">Simpan</button>
                     <button class="bg-green-600 text-white py-2 px-4 rounded" onclick="toggleTamGroup()">Batal</button>
                 </div>
             </div>
         </div>
 
-        <!-- Edit -->
-        <div id="Edit" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <!-- Edit Contact -->
+        <div id="EditContact" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
             <div class="bg-white p-6 rounded-lg shadow-lg w-1/2">
                 <h3 class="text-lg font-semibold mb-4 text-center">Edit Kontak</h3>
                 <div class="grid grid-cols-2 gap-4">
@@ -494,7 +465,7 @@
                             placeholder="Nama Kontak">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">No Handphone</label>
+                        <label class="block text-sm font-medium text-gray-700">No Telepon</label>
                         <input type="text" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
                             placeholder="Nomer Handphone">
                     </div>
@@ -504,15 +475,15 @@
                             placeholder="Email">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">Nama</label>
+                        <label class="block text-sm font-medium text-gray-700">Account Facebook</label>
                         <input type="text" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
-                            placeholder="Nama Kontak">
+                            placeholder="Account Facebook">
                     </div>
                 </div>
 
                 <div class="mt-6 flex justify-between">
-                    <button class="bg-green-600 text-white py-2 px-4 rounded">SIMPAN</button>
-                    <button class="bg-green-600 text-white py-2 px-4 rounded" onclick="ToggleEdit()">Batal</button>
+                    <button class="bg-green-600 text-white py-2 px-4 rounded">Simpan</button>
+                    <button class="bg-green-600 text-white py-2 px-4 rounded" onclick="ToggleEditContact()">Batal</button>
                 </div>
             </div>
         </div>
@@ -543,66 +514,70 @@
                         <tr>
                             <th class="border-b-2 p-2">No</th>
                             <th class="border-b-2 p-2">Nama Kontak</th>
-                            <th class="border-b-2 p-2">Dibuat</th>
-                            <th class="border-b-2 p-2">Jumlah Kontak</th>
-                            <th class="border-b-2 p-2">Aksi</th>
+                            <th class="border-b-2 p-2">No Telepon</th>
+                            <th class="border-b-2 p-2">Grup Kontak</th>
+                            <th class="border-b-2 p-2">Pilih</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         <tr class="bg-gray-100">
                             <td class="border-b p-2 text-center">1</td>
-                            <td class="border-b p-2 text-center">Kontak Grup Kelas wir</td>
-                            <td class="border-b p-2 text-center">26 mei 2024</td>
-                            <td class="border-b p-2 text-center">50</td>
+                            <td class="border-b p-2 text-center">Bp. Agus</td>
+                            <td class="border-b p-2 text-center">089102983918239</td>
+                            <td class="border-b p-2 text-center">Grup Mancing</td>
                             <td class="border-b p-2 text-center">
-                                <button class="text-blue-500 hover:text-blue-700 mx-2">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="text-red-500 hover:text-red-700 mx-2">
-                                    <i class="fas fa-trash"></i>
+                                <button class="text-black">
+                                    <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M5.25 7.5A2.25 2.25 0 0 1 7.5 5.25h9a2.25 2.25 0 0 1 2.25 2.25v9a2.25 2.25 0 0 1-2.25 2.25h-9a2.25 2.25 0 0 1-2.25-2.25v-9Z" />
+                                    </svg>
                                 </button>
                             </td>
                         </tr>
                         <tr class="bg-gray-100">
                             <td class="border-b p-2 text-center">2</td>
-                            <td class="border-b p-2 text-center">Kontak Grup Kelas wir</td>
-                            <td class="border-b p-2 text-center">26 mei 2024</td>
-                            <td class="border-b p-2 text-center">50</td>
+                            <td class="border-b p-2 text-center">Bp. Santoso</td>
+                            <td class="border-b p-2 text-center">08910298391</td>
+                            <td class="border-b p-2 text-center">Grup Renang</td>
                             <td class="border-b p-2 text-center">
-                                <button class="text-blue-500 hover:text-blue-700 mx-2">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="text-red-500 hover:text-red-700 mx-2">
-                                    <i class="fas fa-trash"></i>
+                                <button class="text-black">
+                                    <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M5.25 7.5A2.25 2.25 0 0 1 7.5 5.25h9a2.25 2.25 0 0 1 2.25 2.25v9a2.25 2.25 0 0 1-2.25 2.25h-9a2.25 2.25 0 0 1-2.25-2.25v-9Z" />
+                                    </svg>
                                 </button>
                             </td>
                         </tr>
                         <tr class="bg-gray-100">
                             <td class="border-b p-2 text-center">3</td>
-                            <td class="border-b p-2 text-center">Kontak Grup Kelas wir</td>
-                            <td class="border-b p-2 text-center">26 mei 2024</td>
-                            <td class="border-b p-2 text-center">50</td>
+                            <td class="border-b p-2 text-center">Bp. Budi</td>
+                            <td class="border-b p-2 text-center">086272722223</td>
+                            <td class="border-b p-2 text-center">Grup Bola</td>
                             <td class="border-b p-2 text-center">
-                                <button class="text-blue-500 hover:text-blue-700 mx-2">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="text-red-500 hover:text-red-700 mx-2">
-                                    <i class="fas fa-trash"></i>
+                                <button class="text-black">
+                                    <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M5.25 7.5A2.25 2.25 0 0 1 7.5 5.25h9a2.25 2.25 0 0 1 2.25 2.25v9a2.25 2.25 0 0 1-2.25 2.25h-9a2.25 2.25 0 0 1-2.25-2.25v-9Z" />
+                                    </svg>
                                 </button>
                             </td>
                         </tr>
                         <tr class="bg-gray-100">
                             <td class="border-b p-2 text-center">4</td>
-                            <td class="border-b p-2 text-center">Kontak Grup Kelas wir</td>
-                            <td class="border-b p-2 text-center">26 mei 2024</td>
-                            <td class="border-b p-2 text-center">50</td>
+                            <td class="border-b p-2 text-center">Bp. Joko</td>
+                            <td class="border-b p-2 text-center">084536383332323</td>
+                            <td class="border-b p-2 text-center">Grup Basket</td>
                             <td class="border-b p-2 text-center">
-                                <button class="text-blue-500 hover:text-blue-700 mx-2">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="text-red-500 hover:text-red-700 mx-2">
-                                    <i class="fas fa-trash"></i>
+                                <button class="text-black">
+                                    <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M5.25 7.5A2.25 2.25 0 0 1 7.5 5.25h9a2.25 2.25 0 0 1 2.25 2.25v9a2.25 2.25 0 0 1-2.25 2.25h-9a2.25 2.25 0 0 1-2.25-2.25v-9Z" />
+                                    </svg>
                                 </button>
                             </td>
                         </tr>
@@ -610,34 +585,28 @@
                 </table>
 
                 <div class="mt-6 flex justify-between">
-                    <button class="bg-green-600 text-white py-2 px-4 rounded">SIMPAN</button>
+                    <button class="bg-green-600 text-white py-2 px-4 rounded">Simpan</button>
                     <button class="bg-green-600 text-white py-2 px-4 rounded" onclick="toggleEditGroup()">Batal</button>
                 </div>
             </div>
         </div>
 
         <script>
-            function toggleTamkon() {
-                document.getElementById('TamKon').classList.toggle('hidden');
-            }            
-        </script>
-
-        <script>
             function toggleTamGroup() {
                 document.getElementById('TamGroup').classList.toggle('hidden');
-            }            
+            }
         </script>
 
         <script>
-            function ToggleEdit() {
-                document.getElementById('Edit').classList.toggle('hidden');
-            }            
+            function ToggleEditContact() {
+                document.getElementById('EditContact').classList.toggle('hidden');
+            }
         </script>
 
         <script>
             function toggleEditGroup() {
                 document.getElementById('EditGroup').classList.toggle('hidden');
-            }            
+            }
         </script>
 
 

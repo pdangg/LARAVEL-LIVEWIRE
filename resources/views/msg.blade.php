@@ -1,7 +1,7 @@
 <!-- resources/views/bc.blade.php -->
 @extends('welcome')
 
-@section('title', 'Template Msg')
+@section('title', 'Template Message')
 
 @section('content')
     <div class="flex flex-col flex-1 p-6">
@@ -27,83 +27,175 @@
                 </div>
             </div>
         </header>
-         <!-- Template Section -->
-    <section class="mt-8">
-        <div class="flex justify-between items-center mb-4">
-            <h2 class="text-xl font-bold">Template Message</h2>
-            <button class="bg-black text-white px-4 py-2 rounded-lg" onclick="toggleModal()">Tambah Template</button>
-        </div>
 
-        <div class="flex items-center justify-center min-h-screen bg-gray-100 space-x-4">
-            <div class="max-w-xs p-4 bg-white border rounded-lg shadow-lg">
-                <h2 class="text-xl font-bold text-center mb-4">TEMPLATE A</h2>
-                <img src="{{ asset('images/bigsale.png') }}" alt="Big Sale" class="w-full rounded-lg">
-                <div class="p-4 bg-gray-100 rounded-lg my-4">
-                    <p>Hallo Daniel!</p>
-                    <p>Bagaimana kabar Anda?</p>
-                    <p>Ada promo menarik spesial hanya untuk Anda!</p>
-                    <p>Anda dapat menikmati spesial discount <span class="text-sm">20%</span> untuk periode transaksi bulan ini.</p>
-                </div>
-                <div class="flex flex-col space-y-2 mt-4">
-                    <button class="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">Check Now!</button>
-                    <div class="flex justify-end mt-2">
-                        <button class="w-20 px-4 py-2 text-white bg-green-500 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-opacity-75">Use</button>
+        <section class="mt-14">
+            <!-- Template Section -->
+            <div class="flex flex-wrap justify-center">
+                <!-- Template 1 Informasi Promo -->
+                <div class="w-full md:w-1/3 lg:w-1/3 xl:w-1/3 mb-10 p-4">
+                    <div class="max-w-xs p-4 bg-white border rounded-lg shadow-lg">
+                        <h2 class="text-xl font-bold text-center mb-4">Informasi Promo</h2>
+                        <img src="{{ asset('images/bigsale.png') }}" alt="Big Sale" class="w-full rounded-lg">
+                        <div class="p-4 bg-gray-100 rounded-lg my-4">
+                            <p>Hallo Jennie,</p>
+                            <p>Bagaimana kabar Anda?</p>
+                            <p>Ada promo menarik spesial hanya untuk Anda!</p> <br>
+                            <p>Anda dapat menikmati spesial discount 20% untuk periode transaksi bulan ini.</p> <br>
+                            <p>Jangan lewatkan kesempatan ini atau promo akan hangus. Click button di bawah ini untuk
+                                informasi lebih lanjut</p>
+                        </div>
+                        <div class="flex flex-col space-y-2 mt-4">
+                            <button
+                                class="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+                                style="pointer-events: none;">USE DISCOUNT NOW!</button>
+                            <div class="flex justify-end mt-2">
+                                <a href="{{ route('bc', ['template' => 1]) }}">
+                                    <button
+                                        class="w-20 px-4 py-2 text-white bg-green-500 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-opacity-75">Use</button>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="max-w-xs p-4 bg-white border rounded-lg shadow-lg">
-                <h2 class="text-xl font-bold text-center mb-4">TEMPLATE A</h2>
-                <img src="{{ asset('images/bigsale.png') }}" alt="Big Sale" class="w-full rounded-lg">
-                <div class="p-4 bg-gray-100 rounded-lg my-4">
-                    <p>Hallo Daniel!</p>
-                    <p>Bagaimana kabar Anda?</p>
-                    <p>Ada promo menarik spesial hanya untuk Anda!</p>
-                    <p>Anda dapat menikmati spesial discount <span class="text-sm">20%</span> untuk periode transaksi bulan ini.</p>
-                </div>
-                <div class="flex flex-col space-y-2 mt-4">
-                    <button class="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">Check Now!</button>
-                    <div class="flex justify-end mt-2">
-                        <button class="w-20 px-4 py-2 text-white bg-green-500 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-opacity-75">Use</button>
+                <!-- Template 2: Promo Produk (Tas) -->
+                <div class="w-full md:w-1/3 lg:w-1/3 xl:w-1/3 mb-10 p-4">
+                    <div class="max-w-xs p-4 bg-white border rounded-lg shadow-lg">
+                        <h2 class="text-xl font-bold text-center mb-4">Promo Produk</h2>
+                        <img src="{{ asset('images/bigsale.png') }}" alt="Big Sale" class="w-full rounded-lg">
+                        <div class="p-4 bg-gray-100 rounded-lg my-4">
+                            <p>Hallo Jennie,</p>
+                            <p>Bagaimana kabar Anda?</p>
+                            <p>Ada promo eksklusif untuk Anda!</p> <br>
+                            <p>Dapatkan tas favorit Anda dengan potongan harga hingga 25% hanya bulan ini.</p> <br>
+                            <p>Segera manfaatkan kesempatan ini sebelum promonya berakhir. Click button di bawah ini untuk
+                                informasi lebih lanjut.</p>
+                        </div>
+                        <div class="flex flex-col space-y-2 mt-4">
+                            <button
+                                class="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+                                style="pointer-events: none;">BUY NOW!</button>
+                            <div class="flex justify-end mt-2">
+                                <a href="{{ route('bc', ['template' => 2]) }}">
+                                    <button
+                                        class="w-20 px-4 py-2 text-white bg-green-500 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-opacity-75">Use</button>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="max-w-xs p-4 bg-white border rounded-lg shadow-lg">
-                <h2 class="text-xl font-bold text-center mb-4">TEMPLATE A</h2>
-                <img src="{{ asset('images/bigsale.png') }}" alt="Big Sale" class="w-full rounded-lg">
-                <div class="p-4 bg-gray-100 rounded-lg my-4">
-                    <p>Hallo Daniel!</p>
-                    <p>Bagaimana kabar Anda?</p>
-                    <p>Ada promo menarik spesial hanya untuk Anda!</p>
-                    <p>Anda dapat menikmati spesial discount <span class="text-sm">20%</span> untuk periode transaksi bulan ini.</p>
-                </div>
-                <div class="flex flex-col space-y-2 mt-4">
-                    <button class="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">Check Now!</button>
-                    <div class="flex justify-end mt-2">
-                        <button class="w-20 px-4 py-2 text-white bg-green-500 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-opacity-75">Use</button>
+                <!-- Template 3: Promo Pengguna Baru -->
+                <div class="w-full md:w-1/3 lg:w-1/3 xl:w-1/3 mb-10 p-4">
+                    <div class="max-w-xs p-4 bg-white border rounded-lg shadow-lg">
+                        <h2 class="text-xl font-bold text-center mb-4">Promo Pengguna Baru</h2>
+                        <img src="{{ asset('images/bigsale.png') }}" alt="Big Sale" class="w-full rounded-lg">
+
+                        <div class="p-4 bg-gray-100 rounded-lg my-4">
+                            <p>Hallo Jennie,</p>
+                            <p>Bagaimana kabar Anda?</p>
+                            <p>Selamat datang! Kami punya sesuatu yang spesial hanya untuk Anda.</p> <br>
+                            <p>Nikmati diskon 30% untuk pembelian pertama Anda sebagai pengguna baru di toko kami.</p> <br>
+                            <p>Jangan lewatkan kesempatan ini, klik tombol di bawah untuk memulai belanja sekarang.</p>
+                        </div>
+                        <div class="flex flex-col space-y-2 mt-4">
+                            <button
+                                class="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+                                style="pointer-events: none;">BUY NOW!</button>
+                            <div class="flex justify-end mt-2">
+                                <a href="{{ route('bc', ['template' => 3]) }}">
+                                    <button
+                                        class="w-20 px-4 py-2 text-white bg-green-500 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-opacity-75">Use</button>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="max-w-xs p-4 bg-white border rounded-lg shadow-lg">
-                <h2 class="text-xl font-bold text-center mb-4">TEMPLATE A</h2>
-                <img src="{{ asset('images/bigsale.png') }}" alt="Big Sale" class="w-full rounded-lg">
-                <div class="p-4 bg-gray-100 rounded-lg my-4">
-                    <p>Hallo Daniel!</p>
-                    <p>Bagaimana kabar Anda?</p>
-                    <p>Ada promo menarik spesial hanya untuk Anda!</p>
-                    <p>Anda dapat menikmati spesial discount <span class="text-sm">20%</span> untuk periode transaksi bulan ini.</p>
-                </div>
-                <div class="flex flex-col space-y-2 mt-4">
-                    <button class="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">Check Now!</button>
-                    <div class="flex justify-end mt-2">
-                        <button class="w-20 px-4 py-2 text-white bg-green-500 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-opacity-75">Use</button>
+                <!-- Template 4: Pengenalan Produk Baru (Sepatu) -->
+                <div class="w-full md:w-1/3 lg:w-1/3 xl:w-1/3 p-4">
+                    <div class="max-w-xs p-4 bg-white border rounded-lg shadow-lg">
+                        <h2 class="text-xl font-bold text-center mb-4">Pengenalan Produk Baru</h2>
+                        <img src="{{ asset('images/bigsale.png') }}" alt="Big Sale" class="w-full rounded-lg">
+                        <div class="p-4 bg-gray-100 rounded-lg my-4">
+                            <p>Hallo Jennie,</p>
+                            <p>Bagaimana kabar Anda?</p>
+                            <p>Kami sangat senang memperkenalkan produk terbaru kami kepada Anda!</p> <br>
+                            <p>Temukan koleksi sepatu terbaru kami dengan desain modern dan kenyamanan yang luar biasa.</p>
+                            <br>
+                            <p>Jangan lewatkan kesempatan untuk menjadi yang pertama memilikinya. Click button di bawah ini
+                                untuk informasi lebih lanjut.</p>
+                        </div>
+                        <div class="flex flex-col space-y-2 mt-4">
+                            <button
+                                class="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+                                style="pointer-events: none;">CHECK NOW!</button>
+                            <div class="flex justify-end mt-2">
+                                <a href="{{ route('bc', ['template' => 4]) }}">
+                                    <button
+                                        class="w-20 px-4 py-2 text-white bg-green-500 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-opacity-75">Use</button>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Template 5: Informasi Maintenance (Toko) -->
+                <div class="w-full md:w-1/3 lg:w-1/3 xl:w-1/3 p-4">
+                    <div class="max-w-xs p-4 bg-white border rounded-lg shadow-lg">
+                        <h2 class="text-xl font-bold text-center mb-4">Informasi Maintenance</h2>
+                        <img src="{{ asset('images/bigsale.png') }}" alt="Big Sale" class="w-full rounded-lg">
+                        <div class="p-4 bg-gray-100 rounded-lg my-4">
+                            <p>Hallo Jennie,</p>
+                            <p>Bagaimana kabar Anda?</p>
+                            <p>Kami ingin memberitahukan bahwa toko kami akan mengalami maintenance.</p> <br>
+                            <p>Maintenance akan berlangsung pada tanggal 15 Agustus dari pukul 10:00 hingga 14:00. Mohon
+                                maaf atas ketidaknyamanannya.</p> <br>
+                            <p>Untuk informasi lebih lanjut, silakan klik tombol di bawah ini.</p>
+                        </div>
+                        <div class="flex flex-col space-y-2 mt-4">
+                            <button
+                                class="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+                                style="pointer-events: none;">CHECK COUNTDOWN</button>
+                            <div class="flex justify-end mt-2">
+                                <a href="{{ route('bc', ['template' => 5]) }}">
+                                    <button
+                                        class="w-20 px-4 py-2 text-white bg-green-500 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-opacity-75">Use</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Template 6: Informasi Produk Best Seller (Ransel Merk Puma) -->
+                <div class="w-full md:w-1/3 lg:w-1/3 xl:w-1/3 p-4">
+                    <div class="max-w-xs p-4 bg-white border rounded-lg shadow-lg">
+                        <h2 class="text-xl font-bold text-center mb-4">Informasi Produk Best Seller</h2>
+                        <img src="{{ asset('images/bigsale.png') }}" alt="Big Sale" class="w-full rounded-lg">
+                        <div class="p-4 bg-gray-100 rounded-lg my-4">
+                            <p>Hallo Jennie,</p>
+                            <p>Bagaimana kabar Anda?</p>
+                            <p>Kami punya kabar baik untuk Anda!</p> <br>
+                            <p>Ransel merk Puma, produk best seller kami, kembali tersedia. Jangan lewatkan kesempatan untuk
+                                memilikinya.</p> <br>
+                            <p>Click button di bawah ini untuk melakukan pembelian sekarang sebelum kehabisan.</p>
+                        </div>
+                        <div class="flex flex-col space-y-2 mt-4">
+                            <button
+                                class="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+                                style="pointer-events: none;">BUY NOW!</button>
+                            <div class="flex justify-end mt-2">
+                                <a href="{{ route('bc', ['template' => 6]) }}">
+                                    <button
+                                        class="w-20 px-4 py-2 text-white bg-green-500 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-opacity-75">Use</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-        </div>
-    </section>
+        </section>
+
 
         <!-- Modal Add-->
         <div id="modal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center hidden">
